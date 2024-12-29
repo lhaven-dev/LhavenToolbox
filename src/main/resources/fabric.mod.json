@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "lhaventoolbox",
+  "version": "${version}",
+  "name": "LhavenToolbox",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/lhaventoolbox/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "fr.lhaven.lhaventoolbox.client.LhaventoolboxClient"
+    ],
+    "main": [
+      "fr.lhaven.lhaventoolbox.Lhaventoolbox"
+    ]
+  },
+  "mixins": [
+    "lhaventoolbox.mixins.json",
+    {
+      "config": "lhaventoolbox.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
