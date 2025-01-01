@@ -2,7 +2,6 @@ plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
 
-    // Apply the Kotlin JVM plugin
     id("org.jetbrains.kotlin.jvm") version "2.0.0"}
 
 version = project.mod_version
@@ -31,15 +30,10 @@ repositories {
 
 dependencies {
     // To change the versions see the gradle.properties file
-    // Minecraft
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    // Cobblemon
-    modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}")
-    // Fabric yarn mappings
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    // Fabric API
+    modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}")
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
