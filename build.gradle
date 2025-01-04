@@ -1,9 +1,9 @@
 plugins {
+    id 'java'
     id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
 
-    // Apply the Kotlin JVM plugin
-    id("org.jetbrains.kotlin.jvm") version "2.0.0"}
+    id("org.jetbrains.kotlin.jvm") version "1.9.20"}
 
 version = project.mod_version
 group = project.maven_group
@@ -24,6 +24,8 @@ loom {
 }
 
 repositories {
+    mavenLocal()
+    mavenCentral()
     // Cobblemon repository:
     maven { url "https://maven.impactdev.net/repository/development/" }    // Add repositories to retrieve artifacts from in here.
 

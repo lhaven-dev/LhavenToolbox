@@ -1,6 +1,7 @@
 package fr.lhaven.lhaventoolbox.client;
 
 import fr.lhaven.lhaventoolbox.client.gui.OnlyBackground;
+import fr.lhaven.lhaventoolbox.client.gui.OnlyBackgroundtest;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -30,7 +31,7 @@ public class LhaventoolboxClient implements ClientModInitializer {
         if (OPEN_SCREEN_KEY.isPressed()) {
             MinecraftClient.getInstance().player.sendMessage(Text.of("Key pressed"));
             // Ouvrir l'écran personnalisé
-            MinecraftClient.getInstance().setScreen(new OnlyBackground());
+            MinecraftClient.getInstance().setScreen(new OnlyBackgroundtest());
         }
     }
 }
