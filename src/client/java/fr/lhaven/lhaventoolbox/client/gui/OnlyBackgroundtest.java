@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.client.gui.summary.widgets.ModelWidget;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.RenderablePokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import fr.lhaven.lhaventoolbox.client.gui.widgets.ImageButton;
 import fr.lhaven.lhaventoolbox.client.gui.widgets.Tab;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -28,6 +29,7 @@ public class OnlyBackgroundtest extends Screen {
     private static final int BASE_WIDTH = 349 ;
     private static final int BASE_HEIGHT = 205 ;
     private static final int PORTRAIT_SIZE = 58;
+    private static final Identifier BUTTON_TEXTURE = new Identifier("lhaventoolbox","button.png") ;
     final Identifier MAIN_BACKGROUND = new Identifier("lhaventoolbox","background.png");
 
     final Identifier PORTRAIT_BACKGROUND = new Identifier("lhaventoolbox","portrait.png");
@@ -67,11 +69,23 @@ public class OnlyBackgroundtest extends Screen {
         addDrawableChild(infoTabButton);
         addDrawableChild(battleTabButton);
         addDrawableChild(evolveTabButton);
+
+
+
+
+        // Ajout du bouton à l'écran
+        addDrawableChild(new ImageButton(BUTTON_TEXTURE, 40, 20, x + 100, y + 105, button -> {
+          onImageButtonClick();// Ferme l'écran
+        }));
+
         super.init();
 
 
     }
-
+    private void onImageButtonClick() {
+        MinecraftClient.getInstance().player.sendMessage(Text.of("LEGROBOUTONCLIQUER: "));
+        this.client.setScreen(null); // Ferme l'écran
+    }
     // GESTION EVENT BOUTON TAB
     private void defaultTabClickEvent() {
         battleTabButton.setActive(false);
@@ -95,33 +109,23 @@ public class OnlyBackgroundtest extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         // Dessiner le fond (un fond noir pour cet exemple)
         // Spécifie la taille de l'interface
-
-
         int x = (width - BASE_WIDTH) / 2 ;
         int y = (height - BASE_HEIGHT) / 2 ;
-
         // Dessiner le fond Principal
         context.drawTexture(MAIN_BACKGROUND, x, y, 0, 0, BASE_WIDTH, BASE_HEIGHT, BASE_WIDTH, BASE_HEIGHT);
-
-
         // Dessiner le portrait (element en fond du pokemon)
         int portraitX = x + 13;
         int portraitY = y + 41;
         context.drawTexture(PORTRAIT_BACKGROUND, portraitX, portraitY, 0, 0, PORTRAIT_SIZE, PORTRAIT_SIZE, PORTRAIT_SIZE, PORTRAIT_SIZE);
-
-
         // Création d'un Pokémon
         Pokemon pokemon = new Pokemon();
         pokemon.setSpecies(PokemonSpecies.INSTANCE.getByPokedexNumber(1,"cobblemon"));
         RenderablePokemon renderable = pokemon.asRenderablePokemon();
-
         // Affiche le modèle du Pokémon
         ModelWidget PokemonModel = new ModelWidget(portraitX , portraitY , 66, 66,renderable ,2, 45, 0);
         PokemonModel.render(context,mouseX, mouseY, delta);
-
         // Affiche le modèle du joueur
         drawEntity(context, portraitX+10, portraitY+60, 30, mouseX-180, mouseY-180, this.client.player);
-
         // Affiche les coordonnées de la souris
         TextRenderer textRenderer = client.textRenderer;
         context.drawText(
@@ -132,8 +136,7 @@ public class OnlyBackgroundtest extends Screen {
                 0xFFFFFF,
                 false // Pas d'ombre
         );
-
-        // Appel de la méthode render() pour dessiner les éléments de l'écran (si tu en avais)
+        // Appel de la méthode render() pour dessiner les éléments de l'écran
         super.render(context, mouseX, mouseY, delta);
 
 
