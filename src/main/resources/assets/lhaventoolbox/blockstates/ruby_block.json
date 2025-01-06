@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lhaventoolbox:block/ruby_block"
+    }
+  }
+}
