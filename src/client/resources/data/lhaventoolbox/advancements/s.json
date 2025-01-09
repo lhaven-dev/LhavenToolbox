@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "got_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "text": "La Stonnneee"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "To the stone!"
+    }
+  },
+  "requirements": [
+    [
+      "got_stone"
+    ]
+  ]
+}
